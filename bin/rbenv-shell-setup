@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+# install to ~/.profile and ~/.bashrc
+if [ ! $(which rbenv) ]; then
+echo "export RBENV_ROOT=\"\${HOME}/.rbenv\"
+if [ -d \"\${RBENV_ROOT}\" ]; then
+  export PATH=\"\${RBENV_ROOT}/bin:\${PATH}\"
+  eval \"\$(rbenv init -)\"
+fi
+" | cat - ~/.bashrc > tmp.bashrc
+mv ~/tmp.bashrc ~/.bashrc
+
+echo "export RBENV_ROOT=\"\${HOME}/.rbenv\"
+if [ -d \"\${RBENV_ROOT}\" ]; then
+  export PATH=\"\${RBENV_ROOT}/bin:\${PATH}\"
+  eval \"\$(rbenv init -)\"
+fi
+" | cat - ~/.profile > tmp.profile
+mv ~/tmp.profile ~/.profile
+
+# load rbenv
+export RBENV_ROOT="${HOME}/.rbenv"
+if [ -d "${RBENV_ROOT}" ]; then
+  export PATH="${RBENV_ROOT}/bin:${PATH}"
+  eval "$(rbenv init -)"
+fi
+
+fi
